@@ -245,7 +245,7 @@ Follow the instructions below using the command-line terminal and answer the cor
    }
    ```
 
-8. Additionally, modify test Kotlin application file `app/src/test/kotlin/org/example/AppTest.kt` to use the Java class from the `demo` module:
+8. Additionally, modify the test Kotlin application file `app/src/test/kotlin/org/example/AppTest.kt` to use the Java class from the `demo` module:
    ```kotlin
    package org.example
 

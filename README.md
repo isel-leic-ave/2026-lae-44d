@@ -1,8 +1,8 @@
 # Languages and Managed Runtimes 2026
 
-* Github Classroom for Labs and Project submission:
-  * Individual 44d - https://classroom.github.com/a/UPq8E8Ct
-* [Slack](https://isel-leic-lae.slack.com/) - Use your ISEL email address (e.g. a87956@alunos.isel.pt) and join the channel of your classroom (_e.g._ [#2025-leic-44d-fernanda](https://isel-leic-lae.slack.com/archives/C0AFK0ESJHH))
+* Github Classroom for Labs submissions (Individual): https://classroom.github.com/a/UPq8E8Ct
+* Github Classroom for Project submissions (Group): https://classroom.github.com/a/nS1pkVUh
+* [Slack](https://isel-leic-lae.slack.com/) - Use your ISEL email address (e.g. a87956@alunos.isel.pt) and join the channel of your classroom (_e.g._ [#2026-leic-44d-fernanda](https://isel-leic-lae.slack.com/archives/C0AFK0ESJHH))
 * [Lessons](https://github.com/isel-leic-ave/2026-lae-44d/wiki)
 * [Evaluation _em português_](https://github.com/isel-leic-ave/2026-lae-41d-42d/wiki/evaluation)
 * [Bibliography and Tools](https://github.com/isel-leic-ave/2026-lae-41d-42d/wiki/bibliography)

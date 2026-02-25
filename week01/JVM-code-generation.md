@@ -5,11 +5,13 @@
 ```mermaid
 graph TD
 subgraph "Compilação Nativa (Fluxo C/C++)"
+    direction TB
     A1[Código Fonte .c ou .cpp] --> B1(Compilador gcc/g++)
     B1 --> C1[Código de Máquina Binário]
 end
 
 subgraph "Compilação + Interpretação com JIT (Fluxo Java/Kotlin)"
+    direction TB
     A2[Código .java ou .kt] --> B2(Compilador javac/kotlinc)
     B2 --> C2[Bytecode .class]
     C2 --> D2(java - JVM)

@@ -7,3 +7,8 @@ bin/
 
 # Ignore Gradle build output directory
 build
+
+# Java class files
+*.class
+
+META-INF/

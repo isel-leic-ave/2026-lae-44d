@@ -10,5 +10,5 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-rootProject.name = "demo"
-include("app")
+rootProject.name = "2026-lae-44d"
+//include("app")

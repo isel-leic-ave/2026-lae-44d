@@ -11,4 +11,6 @@ plugins {
 }
 
 rootProject.name = "2026-lae-44d"
-//include("app")
+
+// Sub-projects:
+include("week05:logger-basic")

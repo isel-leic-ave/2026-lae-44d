@@ -1,7 +1,6 @@
 package pt.isel
 
 import kotlin.reflect.full.declaredMemberProperties
-import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
 
 // Property Logger using Kotlin API reflect

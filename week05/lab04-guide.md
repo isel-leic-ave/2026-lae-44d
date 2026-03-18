@@ -11,8 +11,8 @@
 ## **Table of Contents**
 
 1. [Setup](#part-1-setup)
-2. [Exploring Reflection in Java](#part-2-exploring-reflection-in-java)
-3. [Exploring Reflection in Kotlin](#part-3-exploring-reflection-in-kotlin)
+2. [Exploring Kotlin Reflection](#part-2-exploring-kotlin-reflection)
+3. [Exploring Java Reflection](#part-3-exploring-java-reflection)
 
 ## Part 1:  Setup
 
@@ -62,6 +62,7 @@
 4. Implement a unit test that validates the enhanced functionality of the
    `membersToJson()` function for a domain object that contains non-primitive types
    as property, including iterables and other reference types.
+   * An example of classes with reference type and iterable is available at: [week05/company-class-sample/](week05/company-class-sample/)
 
 ## Part 3: Exploring Java Reflection
 

@@ -16,7 +16,7 @@ fun Appendable.logJava(obj: Any) {
     }
     // Property getters
     classJava.declaredMethods
-        .filter { isGetterJava(it) }
+        .filter { isGetter(it) }
         .forEach { mth ->
             mth.isAccessible = true
             val propName: String = mth.name.replaceFirst("get", "").replaceFirstChar { it.lowercase() }
@@ -30,16 +30,16 @@ fun Appendable.logGettersJava(obj: Any) {
     val classJava: Class<*> = obj::class.java
     this.appendLine("Object of Type ${classJava.getSimpleName()}" + System.lineSeparator())
     classJava.declaredMethods
-        .filter { isGetterJava(it) }
+        .filter { isGetter(it) }
         .forEach { mth ->
             mth.isAccessible = true
-            val propName: String? = mth.name.replaceFirst("get", "").replaceFirstChar { it.lowercase() }
+            val propName: String = mth.name.replaceFirst("get", "").replaceFirstChar { it.lowercase() }
             val propValue: Any? = mth.invoke(obj)
             this.append("- " + propName + ": " + propValue + System.lineSeparator())
         }
 }
 
-fun isGetterJava(m: Method): Boolean {
+fun isGetter(m: Method): Boolean {
     return m.name.startsWith("get")
             && m.parameters.size == 0
             && m.returnType != Void.TYPE

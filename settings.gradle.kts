@@ -14,3 +14,4 @@ rootProject.name = "2026-lae-44d"
 
 // Sub-projects:
 include("week05:logger-basic")
+include("week06:naive-mapper")

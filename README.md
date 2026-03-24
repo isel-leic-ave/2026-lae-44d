@@ -26,8 +26,8 @@
 
 ## Important DEADLINES
 
-* Assignment 1 - March 30 - Kotlin Reflection - Description
-* Assignment 2 - April 13 - Kotlin Reflection - Implementation
+* Assignment 1 - April 4 - Kotlin Reflection - Description
+* Assignment 2 - April 20 - Kotlin Reflection - Implementation
 * Assignment 3 - May 4 - Dynamic generation of bytecode
 * Assignment 4 - May 25 - Lazy Sequences
 

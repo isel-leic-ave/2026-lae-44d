@@ -10,32 +10,32 @@ import kotlin.reflect.full.memberProperties
  * Restriction:
  * - only properties with the same name and type.
  */
-class NaiveMapper<T : Any>(val srcType: KClass<*>, val destType:KClass<T>) {
+class NaiveMapper<T : Any>(val srcClass: KClass<*>, val destClass:KClass<T>) {
     /**
      * 1st - selects the constructor with all mandatory parameters
      * in the properties of the source.
      */
-    private val destCtor = destType
-        .constructors
+    private val destCtor = destClass.constructors
         .first { ctor ->
-            ctor
-                .parameters
+            ctor.parameters
                 .filter { !it.isOptional }
-                .all { param -> srcType
-                    .memberProperties
-                    .any { it.name == param.name && it.returnType == param.type}
+                .all { param ->
+                    srcClass.memberProperties
+                        .any { it.name == param.name && it.returnType == param.type}
                 }
         }
     /**
-     * 2nd - look for matching properties with ctor parameters
+     * 2nd - look for matching properties with ctor parameters.
+     * The map relates parameters and properties with the same
+     * name and type.
      */
-    private val args: Map<KParameter, KProperty<*>?> = destCtor
-        .parameters
-        .associateWith { param -> srcType
-            .memberProperties
-            .firstOrNull() { it.name == param.name && it.returnType == param.type }
+    private val args: Map<KParameter, KProperty<*>?> = destCtor.parameters
+        .associateWith { param ->
+            srcClass.memberProperties
+                .firstOrNull{ it.name == param.name && it.returnType == param.type }
         }
         .filter { it.value != null }
+
     /**
      * 3rd - Get the values of properties from source and pass them
      * to te constructor through the callBy()

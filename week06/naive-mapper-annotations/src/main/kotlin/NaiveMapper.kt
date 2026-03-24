@@ -1,0 +1,58 @@
+package pt.isel
+
+import kotlin.reflect.KClass
+import kotlin.reflect.KParameter
+import kotlin.reflect.KProperty
+import kotlin.reflect.full.findAnnotation
+import kotlin.reflect.full.memberProperties
+
+/**
+ * Version 2.1 of NaiveMapper with a NaiveMapper Class definition
+ * Restriction:
+ * - only properties with the same name and type.
+ */
+class NaiveMapper<T : Any>(val srcClass: KClass<*>, val destClass:KClass<T>) {
+    /**
+     * 1st - selects the constructor with all mandatory parameters
+     * in the properties of the source.
+     */
+    private val destCtor = destClass.constructors
+        .first { ctor ->
+            ctor.parameters
+                .filter { !it.isOptional }
+                .all { param ->
+                    srcClass.memberProperties
+                        .any {
+                            //it.name == param.name && it.returnType == param.type
+                            (param.name == (it.findAnnotation<MapProp>()?.paramName ?: it.name)
+                                    && param.type == it.returnType)
+                        }
+                }
+        }
+    /**
+     * 2nd - look for matching properties with ctor parameters.
+     * The map relates parameters and properties with the same
+     * name and type.
+     */
+    private val args: Map<KParameter, KProperty<*>?> = destCtor.parameters
+        .associateWith { param ->
+            srcClass.memberProperties
+                .firstOrNull{
+                    //it.name == param.name && it.returnType == param.type
+                    (param.name == (it.findAnnotation<MapProp>()?.paramName ?: it.name)
+                            && param.type == it.returnType)
+                }
+        }
+        .filter { it.value != null }
+
+    /**
+     * 3rd - Get the values of properties from source and pass them
+     * to te constructor through the callBy()
+     */
+    fun mapFrom(src: Any) : T {
+        val args: Map<KParameter, Any?> = args
+            .map { pair -> pair.key to pair.value?.call(src) }
+            .associate { it }
+        return destCtor.callBy(args)
+    }
+}

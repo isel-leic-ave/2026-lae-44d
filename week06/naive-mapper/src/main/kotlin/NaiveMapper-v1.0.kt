@@ -9,8 +9,8 @@ import kotlin.reflect.full.memberProperties
  * Version 1.0 of NaiveMapper (function) with createInstance
  * Restrictions:
  *  - constructor is parameterless;
- *  - only properties with the same name and type;
- *  - dest properties are mutable.
+ *  - dest properties are mutable;
+ *  - only properties with the same name and type.
  */
 fun <T : Any> Any.mapToProps(destClass: KClass<T>) : T {
     /**

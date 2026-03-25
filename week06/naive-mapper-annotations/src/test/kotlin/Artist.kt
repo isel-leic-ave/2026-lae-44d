@@ -1,3 +1,4 @@
 package pt.isel
 
-class Artist(val name: String = "", val from: String = "", val kind: String = "")
+// Destiny class sample.
+class Artist(val name: String, val country: String, val kind: String)

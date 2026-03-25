@@ -12,7 +12,7 @@ class NaiveMapperTest {
         val dest: ArtistMutable = source.mapToProps(ArtistMutable::class)
         assertEquals(source.name, dest.name)
         assertEquals(source.kind, dest.kind)
-        assertEquals(source.country, dest.from)
+        assertEquals(source.origin, dest.country)
     }
     @Test
     fun mapArtistSpotifyToArtistVersion2() {
@@ -20,15 +20,15 @@ class NaiveMapperTest {
         val dest:Artist = source.mapTo(Artist::class)
         assertEquals(source.name, dest.name)
         assertEquals(source.kind, dest.kind)
-        assertEquals(source.country, dest.from)
+        assertEquals(source.origin, dest.country)
     }
     @Test
-    fun mapArtistSpotifyToArtistVersion3() {
+    fun mapArtistSpotifyToArtistVersion2_1() {
         val mapper = NaiveMapper(ArtistSpotify::class, Artist::class)
         val source = ArtistSpotify("Muse", "UK", "Band")
         val dest:Artist = mapper.mapFrom(source)
         assertEquals(source.name, dest.name)
         assertEquals(source.kind, dest.kind)
-        assertEquals(source.country, dest.from)
+        assertEquals(source.origin, dest.country)
     }
 }

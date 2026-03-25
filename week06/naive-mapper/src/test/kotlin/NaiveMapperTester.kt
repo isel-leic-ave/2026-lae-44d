@@ -12,8 +12,8 @@ class NaiveMapperTest {
         val dest: ArtistMutable = source.mapToProps(ArtistMutable::class)
         assertEquals(source.name, dest.name)
         assertEquals(source.kind, dest.kind)
-        // 'country' and 'origin' are not yet associated in this implementation.
-        assertEquals("", dest.origin)
+        // 'origin' and 'country' are not yet associated in this implementation.
+        assertEquals("", dest.country)
     }
     @Test
     fun mapArtistSpotifyToArtistVersion2() {
@@ -21,8 +21,8 @@ class NaiveMapperTest {
         val dest:Artist = source.mapTo(Artist::class)
         assertEquals(source.name, dest.name)
         assertEquals(source.kind, dest.kind)
-        // 'country' and 'from' are not yet associated in this implementation.
-        assertEquals("", dest.from)
+        // 'country' and 'origin' are not yet associated in this implementation.
+        assertEquals("", dest.country)
     }
     @Test
     fun mapArtistSpotifyToArtistVersionWithClass() {
@@ -31,7 +31,7 @@ class NaiveMapperTest {
         val dest:Artist = mapper.mapFrom(source)
         assertEquals(source.name, dest.name)
         assertEquals(source.kind, dest.kind)
-        // 'country' and 'from' are not yet associated in this implementation.
-        assertEquals("", dest.from)
+        // 'country' and 'origin' are not yet associated in this implementation.
+        assertEquals("", dest.country)
     }
 }

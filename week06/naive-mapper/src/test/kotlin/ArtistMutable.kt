@@ -1,3 +1,4 @@
 package pt.isel
 
-class ArtistMutable(var name: String = "", var origin: String = "", var kind: String = "")
+// Destiny class sample: mutable (for the case of using createInstance)
+class ArtistMutable(var name: String = "", var country: String = "", var kind: String = "")

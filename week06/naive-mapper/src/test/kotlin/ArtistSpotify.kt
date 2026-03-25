@@ -1,3 +1,4 @@
 package pt.isel
 
-class ArtistSpotify(val name: String, val country: String, val kind: String = "")
+// Source class sample.
+class ArtistSpotify(val name: String, val origin: String, val kind: String)

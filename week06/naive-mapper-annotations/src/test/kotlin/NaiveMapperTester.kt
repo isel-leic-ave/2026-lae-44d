@@ -23,7 +23,7 @@ class NaiveMapperTest {
         assertEquals(source.origin, dest.country)
     }
     @Test
-    fun mapArtistSpotifyToArtistVersion2_1() {
+    fun mapArtistSpotifyToArtistVersion3() {
         val mapper = NaiveMapper(ArtistSpotify::class, Artist::class)
         val source = ArtistSpotify("Muse", "UK", "Band")
         val dest:Artist = mapper.mapFrom(source)

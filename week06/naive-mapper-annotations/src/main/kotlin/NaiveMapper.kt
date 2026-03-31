@@ -7,7 +7,7 @@ import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.memberProperties
 
 /**
- * Version 2.1 of NaiveMapper with a NaiveMapper Class definition
+ * Version 3 of NaiveMapper with a NaiveMapper Class definition
  * Restriction:
  * - only properties with the same name and type.
  */
@@ -22,11 +22,7 @@ class NaiveMapper<T : Any>(val srcClass: KClass<*>, val destClass:KClass<T>) {
                 .filter { !it.isOptional }
                 .all { param ->
                     srcClass.memberProperties
-                        .any {
-                            //it.name == param.name && it.returnType == param.type
-                            (param.name == (it.findAnnotation<MapProp>()?.paramName ?: it.name)
-                                    && param.type == it.returnType)
-                        }
+                        .any { matchPropWithParam(it, param) }
                 }
         }
     /**
@@ -37,13 +33,18 @@ class NaiveMapper<T : Any>(val srcClass: KClass<*>, val destClass:KClass<T>) {
     private val args: Map<KParameter, KProperty<*>?> = destCtor.parameters
         .associateWith { param ->
             srcClass.memberProperties
-                .firstOrNull{
-                    //it.name == param.name && it.returnType == param.type
-                    (param.name == (it.findAnnotation<MapProp>()?.paramName ?: it.name)
-                            && param.type == it.returnType)
-                }
+                .firstOrNull{ matchPropWithParam(it, param) }
         }
         .filter { it.value != null }
+
+    // Function to match the property and parameter names considering annotations.
+    private fun matchPropWithParam(srcProp: KProperty<*>, param: KParameter) : Boolean {
+        if(srcProp.name == param.name) {
+            return srcProp.returnType == param.type
+        }
+        val annot = srcProp.findAnnotation<MapProp>() ?: return false
+        return annot.paramName == param.name && srcProp.returnType == param.type
+    }
 
     /**
      * 3rd - Get the values of properties from source and pass them

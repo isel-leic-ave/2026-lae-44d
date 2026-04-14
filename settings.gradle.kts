@@ -16,3 +16,6 @@ rootProject.name = "2026-lae-44d"
 include("week05:logger-basic")
 include("week06:naive-mapper")
 include("week06:naive-mapper-annotations")
+include("week07:naive-mapper-recursive-and-generics")
+include("week09:bench-and-jmh-sample")
+include("week09:naive-mapper-bench")

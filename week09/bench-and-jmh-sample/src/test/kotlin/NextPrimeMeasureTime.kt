@@ -1,19 +1,27 @@
 import pt.isel.nextPrime
 import kotlin.math.pow
 
-public inline fun measureTimeMillis(block: () -> Unit): Long {
+/*
+    This program can be run using the following command lines:
+    - Compiling from week09/bench-and-jmh-sample/:
+        - kotlinc -cp build/classes/kotlin/main/ src/test/kotlin/NextPrimeMeasureTime.kt
+    - Running from week09/bench-and-jmh-sample/:
+        - kotlin -cp .:build/classes/kotlin/main/ NextPrimeMeasureTimeK
+ */
+
+inline fun measureTimeMillis(block: () -> Unit): Long {
     val start = System.currentTimeMillis()
     block()
     return System.currentTimeMillis() - start
 }
 
-public inline fun measureTimeNano(block: () -> Unit): Long {
+inline fun measureTimeNano(block: () -> Unit): Long {
     val start = System.nanoTime()
     block()
     return System.nanoTime() - start
 }
 
-public inline fun statMeasureTime(currentTimeFunc: () -> Long, block: () -> Unit): Pair<Double, Double> {
+inline fun statMeasureTime(currentTimeFunc: () -> Long, block: () -> Unit): Pair<Double, Double> {
     // Calculating mean and standard deviation of the elapsed time
     val listOfElapsedTime = mutableListOf<Long>()
     repeat(12){

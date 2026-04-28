@@ -1,13 +1,6 @@
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     kotlin("jvm") version "2.2.21"
-
-    id("application")
-}
-
-application {
-    // O caminho completo para a classe que contém o public static void main
-    mainClass = "pt.isel.GenBarKt"
 }
 
 repositories {

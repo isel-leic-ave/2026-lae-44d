@@ -18,14 +18,14 @@ import java.lang.constant.MethodTypeDesc
 
 object CounterGen {
 
-    const val FULLY_QUALIFIED_NAME = "isel.pt.Counter"
+    const val FULLY_QUALIFIED_NAME = "pt.isel.Counter"
 
     // Class descriptors (metadata) for the class being generated and its interface
     private val counterClassDesc = ClassDesc.of(FULLY_QUALIFIED_NAME)
-    private val sumClassDesc = ClassDesc.of("isel.pt.Sum")
+    private val sumClassDesc = ClassDesc.of("pt.isel.Sum")
 
     // Path logic to determine where the .class file should be saved
-    private val classFileName = BarGen.FULLY_QUALIFIED_NAME.replace(".", "/") + ".class"
+    private val classFileName = FULLY_QUALIFIED_NAME.replace(".", "/") + ".class"
 
     // Dynamically locate the root output directory where the compiled .class files should be stored
     private val resourcePath =
@@ -53,6 +53,7 @@ object CounterGen {
      * </pre>
      */
     fun buildAndSave() {
+        // println(resourcePath)
         val bytes =
             ClassFile.of().build(counterClassDesc) { clb: ClassBuilder ->
                 clb

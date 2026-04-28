@@ -16,7 +16,7 @@ import java.lang.constant.ConstantDescs.CD_int
 
 object BarGen {
 
-    const val FULLY_QUALIFIED_NAME = "isel.pt.Bar"
+    const val FULLY_QUALIFIED_NAME = "pt.isel.Bar"
 
     // Path logic to determine where the .class file should be saved
     private val classFileName = FULLY_QUALIFIED_NAME.replace(".", "/") + ".class"
@@ -29,7 +29,7 @@ object BarGen {
             ?.path
 
     /**
-     * Generates a .class file for the 'isel.pt.Bar' class containing a 'foo()' method
+     * Generates a .class file for the 'pt.isel.Bar' class containing a 'foo()' method
      * that returns the integer value 67895.
      */
     fun buildAndSave() {
@@ -56,6 +56,8 @@ object BarGen {
                     }
                 }
         }
+        //println(resourcePath)
+        //println(classFileName)
 
         // Create the output directory if it does not exist
         val outputFile = File(resourcePath, classFileName)

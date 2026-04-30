@@ -1,0 +1,10 @@
+package pt.isel
+
+interface Mapper<in T, out R> {
+    fun mapFrom(src: T): R
+
+    fun mapFromList(src: List<T>): List<R> {
+        // call the mapProm function for each element of the source list.
+        return src.stream().map { src: T -> this.mapFrom(src) }.toList()
+    }
+}

@@ -14,9 +14,16 @@ class DynamicMapperTest {
         assertEquals(source.kind, dest.kind)
     }
     @Test
+    fun mapArtistSpotifyToArtistNaiveMapperReflect() {
+        val m = NaiveMapperReflect.mapper(ArtistSpotify::class, Artist::class)
+        val dest = m.mapFrom(source)
+        assertEquals(source.name, dest.name)
+        assertEquals(source.kind, dest.kind)
+    }
+    @Test
     fun mapArtistSpotifyToArtist() {
         val dest:Artist =
-            DynamicMapper.loadDynamicMapper(ArtistSpotify::class, Artist::class)
+            DynamicMapperSimple.loadDynamicMapper(ArtistSpotify::class, Artist::class)
                 .mapFrom(source)
         assertEquals(source.id, dest.id)
         assertEquals(source.name, dest.name)

@@ -28,10 +28,9 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 import kotlin.reflect.KType
 import kotlin.reflect.full.createInstance
-import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.javaGetter
 
-object DynamicMapper {
+object DynamicMapperSimple {
 
     private const val PACKAGE_NAME = "pt.isel"
     private val packageFolder = PACKAGE_NAME.replace(".", "/")
@@ -71,7 +70,7 @@ object DynamicMapper {
         dest: KClass<R>,
     ): KClass<out Any> {
         val className = "${src.simpleName}2${dest.simpleName}"
-        println("-- $currentDir, ${root}, $className")
+        //println("-- $currentDir, ${root}, $className")
         buildMapperByteArray(className, src, dest)
         return rootLoader
             .loadClass("$PACKAGE_NAME.$className")
@@ -120,10 +119,10 @@ object DynamicMapper {
                         cob.dup()
                         // The map (props to param) must be used instead of src.memberProperties
                         // because of the constructor parameter order.
-                        props.forEach { (destParam, srcProp) ->
+                        props.forEach { (param, srcProp) ->
                             //println(srcProp.javaGetter?.name)
                             // Primitive or String case:
-                            if (srcProp.returnType.toKClass().isPrimitiveOrString()) {
+                            if (param.type.toKClass().isPrimitiveOrString()) {
                                 cob.aload(1)
                                 cob.invokevirtual(
                                     src.descriptor(),
@@ -157,8 +156,8 @@ object DynamicMapper {
     /**
      * Returns a ClassDesc of the type descriptor of the given KClass.
      */
-    fun KClass<*>.descriptor(): ClassDesc =
-        if (this.java.isPrimitive) {
+    fun KClass<*>.descriptor(): ClassDesc {
+        return if (this.java.isPrimitive) {
             when (this) {
                 Char::class -> CD_char
                 Short::class -> CD_short
@@ -174,6 +173,7 @@ object DynamicMapper {
         } else {
             ClassDesc.of(this.java.name)
         }
+    }
 
     /**
      * Returns a ClassDesc of the type descriptor of the given KType.

@@ -274,10 +274,3 @@ object DynamicMapper {
     }
 
 }
-
-/*
-// Used for check if the loadDynamicMapper really use invokestatic
-fun main(args: Array<String>) {
-    DynamicMapper.loadDynamicMapper(String::class, String::class)
-}
-*/

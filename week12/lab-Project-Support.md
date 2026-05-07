@@ -8,7 +8,7 @@
   - Classes simples: tipos primitivos, String, java.sql.Date;
   - Classe com Enum;
   - Classe com tipo referência.
-- As classes de Baseline devem implementar a interface ou herdar da classe que implementa `mapResultSetToEntity`.
+- As classes de Baseline devem implementar a interface ou herdar duma classe abstrata que define `mapResultSetToEntity`.
   - Isto vai depender como o projeto está estruturado.
   - O objetivo é sobrescrever (_override_) o método `mapResultSetToEntity` para um mapeamento específico de uma classe do domínio.
     - _e.g._,  retornar `new User(rs.getLong("id"), rs.getString("name"), /*...*/);` para a entidade `User`.

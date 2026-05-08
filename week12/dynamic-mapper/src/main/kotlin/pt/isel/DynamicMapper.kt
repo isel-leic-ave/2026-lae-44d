@@ -43,13 +43,14 @@ object DynamicMapper {
             .getResource("/")
             ?.toURI()
             ?.path
+            ?: currentDir
 
     /**
      * A new ClassLoader is required when the existing one loads classes from a JAR
      * and its resource path is null. In such cases, we create a ClassLoader that uses
      * the current working directory, as specified by the 'user.dir' system property.
      */
-    private val rootLoader = URLClassLoader(arrayOf(File(root ?: currentDir).toURI().toURL()))
+    private val rootLoader = URLClassLoader(arrayOf(File(root).toURI().toURL()))
 
     /**
      * Cache of dynamically generated mappers keyed by the domain class.

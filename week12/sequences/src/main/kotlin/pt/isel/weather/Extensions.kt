@@ -17,6 +17,8 @@ class InterleavingSequence<T>(self: Sequence<T>, other: Sequence<T>) : Sequence<
     var count = 0
     override fun iterator(): Iterator<T> {
 
+        // This function returns an Iterator object implementing
+        // hasNext and next functions.
         return object : Iterator<T> {
             override fun hasNext(): Boolean {
                 return selfIter.hasNext() || otherIter.hasNext()
@@ -69,11 +71,16 @@ fun <T> Stream<T>.interleave(other: Stream<T>) : Stream<T> {
     return StreamSupport.stream(res, false)
 }
 
-// With sequence generation
+// With sequence and yield
 fun <T> Sequence<T>.interleave(other: Sequence<T>) : Sequence<T> {
     return sequence {
         val selfIter = this@interleave.iterator()
         val otherIter = other.iterator()
+        while (selfIter.hasNext() || otherIter.hasNext()) {
+            if (selfIter.hasNext()) yield(selfIter.next())
+            if (otherIter.hasNext()) yield(otherIter.next())
+        }
+        /*
         while(selfIter.hasNext()) {
             yield(selfIter.next())
             if(otherIter.hasNext())
@@ -81,7 +88,7 @@ fun <T> Sequence<T>.interleave(other: Sequence<T>) : Sequence<T> {
         }
         while(otherIter.hasNext()) {
             yield(otherIter.next())
-        }
+        }*/
     }
 }
 
